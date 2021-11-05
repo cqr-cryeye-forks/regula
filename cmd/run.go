@@ -18,6 +18,7 @@ import (
 	"context"
 	_ "embed"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"path/filepath"
 
@@ -120,6 +121,8 @@ func NewRunCommand() *cobra.Command {
 			if err != nil {
 				logrus.Fatal(err)
 			}
+			// write to file
+			_ = ioutil.WriteFile("output.json", []byte(report), 0600)
 			if report != "" {
 				fmt.Println(report)
 			}
